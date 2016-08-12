@@ -1,0 +1,82 @@
+{
+  "manifestVersion": 1,
+  "id": "VSTS-release-note-generator",
+  "version": "1.0.3",
+  "name": "Release Note Generator",
+  "scopes": [ "vso.build", "vso.release" ],
+  "description": "Create a release note file based on changesets associate to build.",
+  "publisher": "michaelsogos",
+  "public": true,
+  "galleryFlags": [
+    "Public"
+  ],
+  "icons": {
+    "default": "img/logo128.png"
+  },
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "content": {
+    "details": {
+      "path": "overview.md"
+    }
+  },
+  "tags": [
+    "Release",
+    "Note",
+    "Generator",
+    "ReleaseNote",
+    "ChangeLog",
+    "ChangeSet",
+    "Build"
+  ],
+  "links": {
+    "home": {
+      "uri": "https://github.com/michaelsogos/VSTS-ReleaseNoteGenerator"
+    },
+    "getstarted": {
+      "uri": "https://github.com/michaelsogos/VSTS-ReleaseNoteGenerator/wiki"
+    },
+    "learn": {
+      "uri": "https://github.com/michaelsogos/VSTS-ReleaseNoteGenerator/wiki"
+    },
+    "support": {
+      "uri": "https://github.com/michaelsogos/VSTS-ReleaseNoteGenerator"
+    },
+    "repository": {
+      "uri": "https://github.com/michaelsogos/VSTS-ReleaseNoteGenerator"
+    },
+    "issues": {
+      "uri": "https://github.com/michaelsogos/VSTS-ReleaseNoteGenerator/issues"
+    },
+    "license": {
+      "uri": "https://github.com/michaelsogos/VSTS-ReleaseNoteGenerator/blob/master/LICENSE"
+    }
+  },
+  "branding": {
+    "color": "#006699",
+    "theme": "dark"
+  },
+  "files": [
+    {
+      "path": "ReleaseNoteGeneratorTask"
+    }
+  ],
+  "categories": [
+    "Build and release"
+  ],
+  "contributions": [
+    {
+      "id": "release-note-generator",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "ReleaseNoteGeneratorTask"
+      }
+    }
+  ]
+}

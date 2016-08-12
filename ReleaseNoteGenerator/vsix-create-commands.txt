@@ -1,0 +1,4 @@
+﻿cd .\ReleaseNoteGenerator
+npm i -g glob
+npm i -g tfx-cli
+tfx extension create --manifest-globs vss-extension.json
