@@ -41,6 +41,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReleaseNoteGeneratorTask\icon.png" />
     <Content Include="vsix-create-commands.txt" />
     <None Include="gruntfile.js" />
     <Content Include="overview.md" />
@@ -57,7 +58,6 @@
     <Content Include="img\logo128.png" />
     <Content Include="img\logo64.png" />
     <Content Include="img\logo32.png" />
-    <Content Include="ReleaseNoteGeneratorTask\icon.png" />
     <Content Include="test\TestSpec.js" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

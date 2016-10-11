@@ -26,12 +26,19 @@
       "label": "Path to release note output file",
       "defaultValue": "$(build.artifactstagingdirectory)\\ReleaseNote.md",
       "required": true
+    },
+    {
+      "name": "verbose",
+      "type": "boolean",
+      "label": "Check this to see verbose output",
+      "defaultValue": "true",
+      "required": true
     }
   ],
   "instanceNameFormat": "Release Note Generator",
   "execution": {
     "PowerShell": {
-      "target": "$(currentDirectory)\\ReleaseNoteGenerator.ps1",
+      "target": "$(currentDirectory)\\ReleaseNoteGenerator.ps1 (. { if ($(verbose) -eq $true) { \"-verbose\" } else { \"\" } )",
       "argumentFormat": "",
       "workingDirectory": "$(currentDirectory)"
     }
