@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "VSTS-release-note-generator",
-  "version": "1.0.4",
+  "version": "1.0.12",
   "name": "Release Note Generator",
   "scopes": [ "vso.build", "vso.release" ],
   "description": "Create a release note file based on changesets associate to build.",

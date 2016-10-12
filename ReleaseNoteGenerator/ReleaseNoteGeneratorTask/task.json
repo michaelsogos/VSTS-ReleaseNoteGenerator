@@ -12,11 +12,11 @@
   "version": {
     "Major": 1,
     "Minor": 0,
-    "Patch": 3
+    "Patch": 12
   },
   "demands": [
   ],
-  "minimumAgentVersion": "1.83.0",
+  "minimumAgentVersion": "2.107.0",
   "groups": [
   ],
   "inputs": [
@@ -28,9 +28,9 @@
       "required": true
     },
     {
-      "name": "verbose",
+      "name": "showExtensionLogs",
       "type": "boolean",
-      "label": "Check this to see verbose output",
+      "label": "Activate logs",
       "defaultValue": "true",
       "required": true
     }
@@ -38,7 +38,7 @@
   "instanceNameFormat": "Release Note Generator",
   "execution": {
     "PowerShell": {
-      "target": "$(currentDirectory)\\ReleaseNoteGenerator.ps1 (. { if ($(verbose) -eq $true) { \"-verbose\" } else { \"\" } )",
+      "target": "$(currentDirectory)\\ReleaseNoteGenerator.ps1",
       "argumentFormat": "",
       "workingDirectory": "$(currentDirectory)"
     }

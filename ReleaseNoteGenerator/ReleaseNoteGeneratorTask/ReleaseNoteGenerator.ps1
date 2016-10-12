@@ -5,17 +5,24 @@
 
 [CmdletBinding()]
 param (
-    [parameter(Mandatory=$true,HelpMessage="Path to release note output file")] $outputfile
+    [parameter(Mandatory=$true,HelpMessage="Path to release note output file")] [string]$outputfile,
+	[parameter(Mandatory=$true,HelpMessage="Activate logs")] [string]$showExtensionLogs
 )
 
+$showLogs = $false
+if($($showExtensionLogs) -eq "true"){
+	$showLogs = $true
+}
 
 #region "Presentation"
-Write-Verbose "===================================="
-Write-Verbose "| VSTS Build ReleaseNote Generator |"
-Write-Verbose "| - Version: 1.0.4                 |"
-Write-Verbose "| - Author:  Michael Sogos         |"
-Write-Verbose "| - License: MIT                   |"
-Write-Verbose "===================================="
+if($showLogs){
+	Write-Host "====================================" -ForegroundColor Magenta
+	Write-Host "| VSTS Build ReleaseNote Generator |" -ForegroundColor Magenta
+	Write-Host "| - Version: 1.0.12                |" -ForegroundColor Magenta
+	Write-Host "| - Author:  Michael Sogos         |" -ForegroundColor Magenta
+	Write-Host "| - License: MIT                   |" -ForegroundColor Magenta
+	Write-Host "====================================" -ForegroundColor Magenta
+}
 #endregion
 
 #region "Variable Definition"
@@ -23,18 +30,19 @@ $buildId = $env:BUILD_BUILDID
 $releaseId = $env:RELEASE_RELEASEID
 $buildDefinitionName = $env:BUILD_DEFINITIONNAME 
 $buildNumber = $env:BUILD_BUILDNUMBER 
-
 $headers = @{Authorization=("Bearer {0}" -f $env:SYSTEM_ACCESSTOKEN)}
 $urlChangeSets = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/build/builds/$($buildId)/changes?api-version=2"
 
-Write-Verbose "Build ID: $($buildId)"
-Write-Verbose "Release ID: $($releaseId)"
-Write-Verbose "Credentials: Using agent default OAuth credentials"
-Write-Verbose "Output: $($outputfile)"
+if($showLogs){
+	Write-Host "Build ID: $($buildId)" -ForegroundColor Yellow 
+	Write-Host "Release ID: $($releaseId)" -ForegroundColor Yellow
+	Write-Host "Credentials: Using agent default OAuth credentials" -ForegroundColor Yellow
+	Write-Host "Output: $($outputfile)" -ForegroundColor Yellow
+}
 #endregion
 
 #region "Get ChangeSets associated to build"
-Write-Host "Retrieving changesets associated to build $($buildId)." 
+Write-Host "Retrieving changesets associated to build $($buildId)."
 $changeSets = ""
 Try{
     $changeSets = Invoke-RestMethod -Method Get -Uri $urlChangeSets -headers $headers -ErrorAction Stop
@@ -52,7 +60,7 @@ if($changeSets.GetType().Name -ne "PSCustomObject"){
 #endregion
 
 #region "Generate Markdown File for Release Note"
-Write-Host "Generating markdown file ..." 
+Write-Host "Generating markdown file ..."
 $result = "# Release notes for build **$($buildDefinitionName)**  "
 $result += "`r`n**Build Number** : $($buildNumber)  " 
 $result += "`r`n"
@@ -61,7 +69,9 @@ $result += Foreach ($changeSet in $changeSets.value){
 	Write-Output "`r`n#### $("{0:dd/MM/yy HH:mm:ss}" -f [datetime]$changeSet.timestamp) - _@$($changeSet.author.displayName)_  " 
 	Write-Output "`r`n$($changeSet.message)  "
 	Write-Output "`r`n"
-    Write-Verbose "ChangeSet Comment: $($changeSet)"
+    if($showLogs) { 
+		Write-Host "ChangeSet Comment: $($changeSet)" -ForegroundColor Yellow
+	}
 } 
 
 $result | Out-File $outputfile
