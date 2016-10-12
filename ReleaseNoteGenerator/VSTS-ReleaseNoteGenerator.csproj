@@ -41,6 +41,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\ConfigOAuth.png" />
+    <Content Include="img\ConfigOutput.png" />
     <Content Include="ReleaseNoteGeneratorTask\icon.png" />
     <Content Include="vsix-create-commands.txt" />
     <None Include="gruntfile.js" />

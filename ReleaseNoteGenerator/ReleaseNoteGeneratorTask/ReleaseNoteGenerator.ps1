@@ -18,7 +18,7 @@ if($($showExtensionLogs) -eq "true"){
 if($showLogs){
 	Write-Host "====================================" -ForegroundColor Magenta
 	Write-Host "| VSTS Build ReleaseNote Generator |" -ForegroundColor Magenta
-	Write-Host "| - Version: 1.0.12                |" -ForegroundColor Magenta
+	Write-Host "| - Version: 1.0.16                |" -ForegroundColor Magenta
 	Write-Host "| - Author:  Michael Sogos         |" -ForegroundColor Magenta
 	Write-Host "| - License: MIT                   |" -ForegroundColor Magenta
 	Write-Host "====================================" -ForegroundColor Magenta
@@ -36,7 +36,7 @@ $urlChangeSets = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJ
 if($showLogs){
 	Write-Host "Build ID: $($buildId)" -ForegroundColor Yellow 
 	Write-Host "Release ID: $($releaseId)" -ForegroundColor Yellow
-	Write-Host "Credentials: Using agent default OAuth credentials" -ForegroundColor Yellow
+	Write-Host "Credentials: $($env:SYSTEM_ACCESSTOKEN)" -ForegroundColor Yellow
 	Write-Host "Output: $($outputfile)" -ForegroundColor Yellow
 }
 #endregion
